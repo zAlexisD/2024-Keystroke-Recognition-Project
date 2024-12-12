@@ -1,0 +1,4 @@
+/snap/clion/308/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/308/bin/ninja/linux/x64/ninja -G Ninja -S /home/alexisd/CLionProjects/3A_RTS_miniProject -B /home/alexisd/CLionProjects/3A_RTS_miniProject/cmake-build-debug
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/alexisd/CLionProjects/3A_RTS_miniProject/cmake-build-debug

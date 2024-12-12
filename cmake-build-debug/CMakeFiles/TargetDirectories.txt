@@ -1,0 +1,3 @@
+/home/alexisd/CLionProjects/3A_RTS_miniProject/cmake-build-debug/CMakeFiles/3A_RTS_miniProject.dir
+/home/alexisd/CLionProjects/3A_RTS_miniProject/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/alexisd/CLionProjects/3A_RTS_miniProject/cmake-build-debug/CMakeFiles/rebuild_cache.dir
