@@ -14,6 +14,7 @@
 using namespace std;
 
 // ----- Constants/Global variables -----
+const vector<const string> passphraseChoice = {"short","s","medium","m","long","l"};
 const vector<const string> passphraseList = {"pouet pouet","we want a long passphrase","rts stands for network telecommunications and security"};
 const vector<const string> genderList = {"m","f","male","female","o","other"};
 const vector<const string> handednessList = {"r","l","right","left","b","both"};
@@ -26,6 +27,7 @@ private:
     string username;
     string gender;
     string dominantHand;
+    string passphrase;
 public:
     // Default constructor
     UserID();
@@ -33,11 +35,16 @@ public:
     string getUsername();
     string getGender();
     string getDominantHand();
+    string getPassphrase();
+    // Setters have almost all the same structure so let's define a template method using pointer
+    template <typename T>
+    void setParameter(T UserID::*attribute,const T& paramInterface,const vector<const string>& T& paramList);
     // Setters to make user assign the information
     // Note : ask user as input stream, it is why there is no input in the setters
     void setUsername();
     void setGender();
     void setDominantHand();
+    void setPassphrase();
     // Display information method
     void displayUserID();
 };
