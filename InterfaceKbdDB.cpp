@@ -3,6 +3,7 @@
 //
 
 #include "InterfaceKbdDB.h"
+#include "KeyEventsHandling.h"
 
 // UserID Default constructor
 UserID::UserID() {
@@ -56,7 +57,7 @@ void UserID::setUsername() {
     // Init
     string usernameInput;
     // User prompt input
-    cout << "Hello ! What is your name?"<< endl;
+    cout << "What is your name?"<< endl;
     cin >> usernameInput;
     // Handle non-valid username case = empty entry
     if (usernameInput.empty()){
@@ -96,5 +97,42 @@ void UserID::setPassphrase() {
         this->passphrase = passphraseList[2];
     }
 }
-// WIP : display method
-// WIP : define the passphrase part
+
+// Display attributes method
+void UserID::displayUserID() const {
+    cout << "Username: " << username << endl;
+    cout << "Gender: " << gender << endl;
+    cout << "Dominant hand: " << dominantHand << endl;
+    cout << "Choice of passphrase to type : " << passphrase << endl;
+}
+
+// Ask user to type the chosen passphrase N times, get data and store in a file
+vector<vector<int>> getUserData(UserID userSettings,libevdev* dev) {
+    // Inits
+    int attempts = 0;
+    vector<vector<int>> keyboardData(maxPassphraseAttempt);
+    //
+    cout << "The passphrase to type is: " << userSettings.getPassphrase() << endl;
+    // Main loop
+    while (attempts < maxPassphraseAttempt) {
+        attempts++;
+        cout << "Attempt: " << attempts <<"/"<< maxPassphraseAttempt << endl;
+        cout << "\nPlease type '" << userSettings.getPassphrase() << "' and press Enter to finish" << endl;
+        KeyCapture timeCapture = captureKeyboardEvents(dev);
+        // If error detected in the passphrase typed, do it again
+        if (timeCapture.getUserInput() != userSettings.getPassphrase()) {
+            timeCapture.resetCapture();
+            attempts--;
+            cout << "Wrong passphrase! Try again please" << endl;
+        }
+        else {
+            // Convert the time Measures into 1-row of interpretable data
+            const vector<int> timeData = timeToData(timeCapture.getTimeMeasure());
+            // Copy the data row in keyboardData
+            keyboardData[attempts-1] = timeData;
+        }
+    }
+    return keyboardData;
+}
+
+// WIP : store data

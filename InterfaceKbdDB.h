@@ -10,6 +10,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <libevdev-1.0/libevdev/libevdev.h>
 
 using namespace std;
 
@@ -18,6 +19,7 @@ const vector<const string> passphraseChoice = {"short","s","medium","m","long","
 const vector<const string> passphraseList = {"pouet pouet","we want a long passphrase","rts stands for network telecommunications and security"};
 const vector<const string> genderList = {"m","f","male","female","o","other"};
 const vector<const string> handednessList = {"r","l","right","left","b","both"};
+constexpr int maxPassphraseAttempt = 10;
 
 // ----- Class declaration -----
 // Define a userID class and get from user their username, gender and dominant hand
@@ -46,7 +48,10 @@ public:
     void setDominantHand();
     void setPassphrase();
     // Display information method
-    void displayUserID();
+    void displayUserID() const;
 };
+
+// ----- Function declaration -----
+vector<vector<int>> getUserData(UserID userSettings,libevdev* dev);
 
 #endif //INTERFACEKBDDB_H
