@@ -6,24 +6,25 @@
 
 int main() {
     // Inits
-    string passphrase = "example passphrase";
+    const string passphrase = "example passphrase";
     // Keyboard initiation
     string device_path = getKeyboardPath();
     libevdev* dev = initDevice(device_path);
 
-    cout << "\nPlease type '" << passphrase << "' and press Enter to finish : " << endl;
+    cout << "\nPlease type '" << passphrase << "' and press 'Enter' to finish" << endl;
 
     // Capture keyboard events and collect timing data
-    auto timeMeasure = captureKeyboardEvents(dev);
+    auto kbdCapture = captureKeyboardEvents(dev);
 
     // Conversion to have interpretable data
-    auto timeMeasureData = timeToInt(timeMeasure);
+    auto timeMeasure = kbdCapture.getTimeMeasure();
+    auto timeMeasureData = timeToData(timeMeasure);
 
     // ----- Debug -----
     // output of collected timing data
     cout << "\n---------- Collected Timing data ----------\n";
     // define temporary header for the vector
-    vector<string> feature_name = {
+    const vector<string> feature_name = {
         "Time between two key presses",
         "Time between two key releases",
         "Time between release and press",
@@ -40,13 +41,10 @@ int main() {
     }
     // Display the time measure in ML data format
     cout << "\n----- Corresponding Time Data -----\n";
-    for (size_t i = 0; i < timeMeasureData.size(); ++i) {
-        cout << feature_name[i] << " : \n";
-        for (const auto& value : timeMeasureData[i]) {
-            cout << value << " ";
-        }
-        cout << endl;
+    for (const auto& value : timeMeasureData) {
+        cout << value << " ";
     }
+    cout << endl;
     // Clean up and free the libevdev struct.
     libevdev_free(dev);
     return EXIT_SUCCESS;
