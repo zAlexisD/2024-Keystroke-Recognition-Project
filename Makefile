@@ -9,13 +9,13 @@ LDFLAGS = -levdev
 TARGET = keystrokeDB
 
 # Source files and object files
-SRCS = mainTest.cpp KeyEventsHandling.cpp
-#SRCS = myKeystrokeDB.cpp KeyEventsHandling.cpp InterfaceKbdDB.cpp
+#SRCS = mainTest.cpp KeyEventsHandling.cpp
+SRCS = myKeystrokeDB.cpp KeyEventsHandling.cpp InterfaceKbdDB.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 # Header file
-HEADERS = KeyEventsHandling.h
-#HEADERS = KeyEventsHandling.h InterfaceKbdDB.h
+#HEADERS = KeyEventsHandling.h
+HEADERS = KeyEventsHandling.h InterfaceKbdDB.h
 
 # Default target: build the program
 all: $(TARGET)

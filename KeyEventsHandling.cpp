@@ -43,11 +43,11 @@ string getKeyboardPath() {
     // Inits
     string event_number;
     // Help guide
-    cout << " ----- Hey, let's first setup the program with your keyboard -----" << endl;
+    cout << "\n ---------- Hey, let's first setup the program with your keyboard ----------\n" << endl;
     cout << "1 -> Please check on a terminal : ls /dev/input/by-id/ or ls /dev/input/by-path/" << endl;
     cout << "2 -> Find the device finishing with -kbd, it's the link to your keyboard." << endl;
     cout << "3 -> Then, to find the associated event type : readlink /dev/input/by-path/<yourKeyboardLink>" << endl;
-    cout << "To which eventX is it linked ?" << endl;
+    cout << "\nTo which eventX is it linked ?" << endl;
     cin >> event_number;
     // Output
     string device_path = "/dev/input/"+event_number;
@@ -71,7 +71,7 @@ libevdev* initDevice(const string& device_path) {
     }
 
     // Output
-    cout << "Device initialised : " << libevdev_get_name(dev) << endl;
+    cout << "\nDevice initialised : " << libevdev_get_name(dev) << endl;
     return dev;
 }
 
@@ -85,7 +85,7 @@ double computeDuration(const chrono::time_point<chrono::steady_clock>& start,con
     return chrono::duration_cast<chrono::duration<double>>(end - start).count();
 }
 
-// WIP : define rapidly a class to get vector and string output
+// WIP : Handle the backward key
 // Now let's handle key press and release, and store timing data
 KeyCapture captureKeyboardEvents(libevdev* dev) {
     // Inits
