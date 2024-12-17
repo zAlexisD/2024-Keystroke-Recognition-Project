@@ -26,9 +26,10 @@ Note : The `libevdev` library needs to be run as root.
 4- Command `make clean` to delete the `.o` files and the executable or directly use `make clean all è if you want to delete all and recompile directly.
 
 ## WIP
-- Extend the use to Windows + MacOS users
-- Handle the backward key issue
+- Extend the use to Windows + MacOS users -> make a crossplateform version for easy use (web ?)
+- Handle users with same name
 - Handle the errors
 - Make a graphical user interface (GUI)
 - Add the Python code part
 - Some small fixes
+- Concatenate the different passphrase to have one single study
