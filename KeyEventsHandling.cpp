@@ -112,8 +112,14 @@ KeyCapture captureKeyboardEvents(libevdev* dev) {
                 break;
             }
 
+            // Handle the not mapped keys issue -> reset attempt if pressed
+            if (event.type == EV_KEY && event.value == 1 && !key_mapping_AZERTY.contains(event.code)) {
+                cout << "\nOopsi you pressed a wrong key, it will ruin the data :(((((" << endl;
+                break;
+            }
+
             // Detect other key events
-            if (event.type == EV_KEY) {
+            if (event.type == EV_KEY && key_mapping_AZERTY.contains(event.code)) {
                 // Key press case (value = 1)
                 if (event.value == 1) {
                     // Capture the key as a character
