@@ -17,7 +17,7 @@ using namespace std;
 
 // ----- Constants/Global variables -----
 const vector<string> passphraseChoice = {"short","s","medium","m","long","l"};
-const vector<string> passphraseList = {"pouet pouet","we want a long passphrase","rts stands for network telecommunications and security"};
+const vector<string> passphraseList = {"donut sucre","we want a mid passphrase","rts stands for network telecommunications and security"};
 const vector<string> genderList = {"m","f","male","female","o","other"};
 const vector<string> handednessList = {"r","l","right","left","b","both"};
 constexpr int maxPassphraseAttempt = 10;

@@ -147,7 +147,7 @@ vector<vector<int>> getUserData(UserID userSettings,libevdev* dev) {
 // Generate the header for the csv file according to the number of characters of the passphrase
 vector<string> genCsvHeader(UserID userID) {
     // Init
-    const int passphraseSize = userID.getPassphrase().size();
+    const int passphraseSize = static_cast<int>(userID.getPassphrase().size());
     vector<string> csvHeader;
     // First add the 3 attributes of the users
     const string userAttributes = "User,Gender,Handedness,";
@@ -175,10 +175,10 @@ void saveCsvData(UserID userSettings,vector<vector<int>> userData) {
     // Inits
     string passphraseSize;
     // WIP : Handle this cleaner ?
-    if (userSettings.getPassphrase() == "pouet pouet") {
+    if (userSettings.getPassphrase() == "donut sucre") {
         passphraseSize = "short";
     }
-    else if (userSettings.getPassphrase() == "we want a long passphrase") {
+    else if (userSettings.getPassphrase() == "we want a mid passphrase") {
         passphraseSize = "medium";
     }
     else if (userSettings.getPassphrase() == "rts stands for network telecommunications and security") {
